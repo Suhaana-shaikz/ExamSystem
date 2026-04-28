@@ -2,8 +2,15 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY target/*.jar app.jar
+# copy full project
+COPY . .
+
+# give permission
+RUN chmod +x mvnw
+
+# build jar (skip tests)
+RUN ./mvnw clean package -Dmaven.test.skip=true
 
 EXPOSE 8085
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
