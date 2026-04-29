@@ -25,4 +25,6 @@ RUN ./mvnw clean package -Dmaven.test.skip=true
 
 EXPOSE 8087
 
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["sh","-c","java -jar target/*.jar"]
+#
+# CMD ["java", "-jar", "target/*.jar"]
