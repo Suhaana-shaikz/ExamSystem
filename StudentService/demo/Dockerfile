@@ -1,13 +1,27 @@
+# FROM eclipse-temurin:17-jdk
+#
+# WORKDIR /app
+#
+# COPY . .
+#
+# RUN chmod +x mvnw
+#
+# RUN ./mvnw clean package -Dmaven.test.skip=true
+#
+# EXPOSE 8087
+#
+# ENTRYPOINT ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
+
 FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY . .
+COPY demo/ .
 
 RUN chmod +x mvnw
 
-RUN ./mvnw clean package -Dmaven.test.skip=true
+RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8087
 
-ENTRYPOINT ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/*.jar"]
