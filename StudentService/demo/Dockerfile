@@ -16,7 +16,7 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY StudentService/demo/ .
+COPY . .
 
 RUN chmod +x mvnw
 
