@@ -17,7 +17,7 @@ import java.util.List;
 
 public class QuestionController {
 
-    @Value("${server.port}")
+    @Value("${server.port:8081}")
     private String port;
 
 
