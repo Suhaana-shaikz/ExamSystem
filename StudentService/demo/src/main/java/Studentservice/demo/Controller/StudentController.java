@@ -80,7 +80,10 @@ public class StudentController {
         return service.getDashboard();
     }
 
-
+    @GetMapping("/test")
+    public String test(){
+        return "Working";
+    }
 
     @GetMapping("/questions")
     public List<Question> getQuestions(){
