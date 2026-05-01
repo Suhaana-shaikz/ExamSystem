@@ -17,14 +17,33 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
 
-                        // ✅ PUBLIC (students)
+                        // ✅ PUBLIC
                         .requestMatchers("/questions/random").permitAll()
 
-                        // 🔐 ADMIN (CRUD)
+                        // 🔐 ADMIN
                         .requestMatchers("/questions/**").authenticated()
+
+                        // 🔥 IMPORTANT
+                        .anyRequest().authenticated()
                 )
                 .httpBasic(httpBasic -> {});
 
         return http.build();
     }
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//
+//        http
+//                .csrf(csrf -> csrf.disable())
+//                .authorizeHttpRequests(auth -> auth
+//
+//                        // ✅ PUBLIC (students)
+//                        .requestMatchers("/questions/random").permitAll()
+//
+//                        // 🔐 ADMIN (CRUD)
+//                        .requestMatchers("/questions/**").authenticated()
+//                )
+//                .httpBasic(httpBasic -> {});
+//
+//        return http.build();
+//    }
 }
