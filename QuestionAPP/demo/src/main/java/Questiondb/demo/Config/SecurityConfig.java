@@ -18,12 +18,28 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         // ✅ PUBLIC (students)
-                        .requestMatchers("/questions/random").permitAll()
+                        .requestMatchers(
+                                "/student/submit",
+                                "/student/questions",
+                                "/student/check/**",
+                                "/student/test"   // ✅ add this also
+                        ).permitAll()
 
-                        // 🔐 ADMIN (CRUD)
-                        .requestMatchers("/questions/**").authenticated()
+                        // 🔐 ADMIN
+                        .requestMatchers(
+                                "/student/dashboard",
+                                "/student/download",
+                                "/student/all",
+                                "/student/answers"
+                        ).authenticated()
+
+                        // 🔥 VERY IMPORTANT
+                        .anyRequest().authenticated()
                 )
+
+                // ✅ ENABLE BASIC AUTH (FIX)
                 .httpBasic(httpBasic -> {});
+
 
         return http.build();
     }
