@@ -31,13 +31,15 @@ public class StudentService {
 
 
     public List<Question> getQuestionsFromQuestionService(){
-
+        System.out.println("NEW CODE EXECUTED");
         return webClientBuilder.build()
                 .get()
                 .uri("https://examsystem-4.onrender.com/questions/random") // ✅ deployed URL
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<Question>>() {}) // ✅ FIX
                 .block();
+
+
     }
 
 
