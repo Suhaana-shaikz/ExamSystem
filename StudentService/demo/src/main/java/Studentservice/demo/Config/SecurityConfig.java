@@ -13,19 +13,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-
-                        // ✅ PUBLIC
                         .requestMatchers(
                                 "/student/submit",
                                 "/student/questions",
                                 "/student/check/**",
                                 "/student/test"
                         ).permitAll()
-
                         // 🔐 ADMIN
                         .requestMatchers(
                                 "/student/dashboard",
@@ -33,8 +29,6 @@ public class SecurityConfig {
                                 "/student/all",
                                 "/student/answers"
                         ).authenticated()
-
-                        // 🔥 VERY IMPORTANT
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());

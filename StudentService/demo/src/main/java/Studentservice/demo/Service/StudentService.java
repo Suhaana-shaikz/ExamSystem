@@ -33,7 +33,7 @@ public class StudentService {
 
         return webClientBuilder.build()
                 .get()
-                .uri("http://QUESTION-SERVICE/questions/random")
+                .uri("https://examsystem-4.onrender.com/questions/random")
                 .retrieve()
                 .bodyToFlux(Question.class)
                 .collectList()
