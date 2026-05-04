@@ -45,16 +45,23 @@ public class StudentService {
     public List<Question> getQuestionsFromQuestionService() {
 
         try {
-            return webClientBuilder.build()
+            System.out.println("🔥 METHOD CALLED");
+
+            String response = webClientBuilder.build()
                     .get()
                     .uri("https://examsystem-4.onrender.com/questions/random")
                     .retrieve()
-                    .bodyToMono(new org.springframework.core.ParameterizedTypeReference<List<Question>>() {})
+                    .bodyToMono(String.class)
                     .block();
 
+            System.out.println("🔥 RAW RESPONSE: " + response);
+
+            return new ArrayList<>();
+
         } catch (Exception e) {
-            e.printStackTrace(); // 🔥 MUST
-            throw new RuntimeException("FAILED TO FETCH QUESTIONS");
+            System.out.println("🔥 ERROR OCCURRED");
+            e.printStackTrace();
+            throw new RuntimeException("FAILED");
         }
     }
 
