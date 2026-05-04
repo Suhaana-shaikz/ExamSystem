@@ -10,6 +10,7 @@ import Studentservice.demo.Repository.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -33,10 +34,9 @@ public class StudentService {
 
         return webClientBuilder.build()
                 .get()
-                .uri("https://examsystem-4.onrender.com/questions/random")
+                .uri("https://examsystem-4.onrender.com/questions/random") // ✅ deployed URL
                 .retrieve()
-                .bodyToFlux(Question.class)
-                .collectList()
+                .bodyToMono(new ParameterizedTypeReference<List<Question>>() {}) // ✅ FIX
                 .block();
     }
 
