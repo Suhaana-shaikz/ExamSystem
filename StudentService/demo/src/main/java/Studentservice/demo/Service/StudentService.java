@@ -44,9 +44,9 @@ public class StudentService {
 
     public List<Question> getQuestionsFromQuestionService() {
 
-        try {
-            System.out.println("🔥 METHOD CALLED");
+        System.out.println("🔥 METHOD CALLED");
 
+        try {
             String response = webClientBuilder.build()
                     .get()
                     .uri("https://examsystem-4.onrender.com/questions/random")
@@ -59,9 +59,12 @@ public class StudentService {
             return new ArrayList<>();
 
         } catch (Exception e) {
-            System.out.println("🔥 ERROR OCCURRED");
-            e.printStackTrace();
-            throw new RuntimeException("FAILED");
+
+            System.out.println("🔥 ERROR START");
+            e.printStackTrace();   // 👈 THIS IS KEY
+            System.out.println("🔥 ERROR END");
+
+            return new ArrayList<>();
         }
     }
 
