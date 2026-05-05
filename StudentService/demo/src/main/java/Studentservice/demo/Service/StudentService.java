@@ -29,44 +29,44 @@ public class StudentService {
     @Autowired
     private WebClient.Builder webClientBuilder;
 
-
-    public List<Question> getQuestionsFromQuestionService(){
-        System.out.println("NEW CODE EXECUTED");
-        return webClientBuilder.build()
-                .get()
-                .uri("https://examsystem-4.onrender.com/questions/random") // ✅ deployed URL
-                .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<Question>>() {}) // ✅ FIX
-                .block();
-
-
-    }
-
-//    public List<Question> getQuestionsFromQuestionService() {
 //
-//        System.out.println("🔥 METHOD CALLED");
+//    public List<Question> getQuestionsFromQuestionService(){
+//        System.out.println("NEW CODE EXECUTED");
+//        return webClientBuilder.build()
+//                .get()
+//                .uri("https://examsystem-4.onrender.com/questions/random") // ✅ deployed URL
+//                .retrieve()
+//                .bodyToMono(new ParameterizedTypeReference<List<Question>>() {}) // ✅ FIX
+//                .block();
 //
-//        try {
-//            String response = webClientBuilder.build()
-//                    .get()
-//                    .uri("https://examsystem-4.onrender.com/questions/random")
-//                    .retrieve()
-//                    .bodyToMono(String.class)
-//                    .block();
 //
-//            System.out.println("🔥 RAW RESPONSE: " + response);
-//
-//            return new ArrayList<>();
-//
-//        } catch (Exception e) {
-//
-//            System.out.println("🔥 ERROR START");
-//            e.printStackTrace();   // 👈 THIS IS KEY
-//            System.out.println("🔥 ERROR END");
-//
-//            return new ArrayList<>();
-//        }
 //    }
+
+    public List<Question> getQuestionsFromQuestionService() {
+
+        System.out.println("🔥 METHOD CALLED");
+
+        try {
+            String response = webClientBuilder.build()
+                    .get()
+                    .uri("https://examsystem-4.onrender.com/questions/random")
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+
+            System.out.println("🔥 RAW RESPONSE: " + response);
+
+            return new ArrayList<>();
+
+        } catch (Exception e) {
+
+            System.out.println("🔥 ERROR START");
+            e.printStackTrace();   // 👈 THIS IS KEY
+            System.out.println("🔥 ERROR END");
+
+            return new ArrayList<>();
+        }
+    }
 
 
 
