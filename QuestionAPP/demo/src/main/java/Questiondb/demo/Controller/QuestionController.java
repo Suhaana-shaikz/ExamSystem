@@ -62,10 +62,11 @@ private QuestionRepo questionRepo;
 
 
     // 🔹 Random 20
-    @GetMapping("/random")
-    public List<Question> random(){
-        System.out.println("Served from PORT: " + port);
-        return service.getRandomQuestions();
+    @GetMapping("/random/{limit}")
+    public List<Question> random(
+            @PathVariable int limit
+    ){
+        return service.getRandomQuestions(limit);
     }
 
     // 🔹 Update

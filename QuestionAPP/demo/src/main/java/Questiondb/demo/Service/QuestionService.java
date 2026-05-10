@@ -44,12 +44,12 @@ public class QuestionService {
     }
 
     // 🔥 Random 20 Questions (IMPORTANT)
-    public List<Question> getRandomQuestions(){
+    public List<Question> getRandomQuestions(int limit){
 
         List<Question> all = repo.findAll();
 
         Collections.shuffle(all);
 
-        return all.subList(0, Math.min(20, all.size()));
+        return all.subList(0, Math.min(limit, all.size()));
     }
 }
