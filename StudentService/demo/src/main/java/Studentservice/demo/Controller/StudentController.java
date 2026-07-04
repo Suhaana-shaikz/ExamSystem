@@ -39,22 +39,21 @@ public class StudentController {
         PrintWriter writer = response.getWriter();
 
         // HEADER
-        writer.println("ID,StudentID,Name,Email,Gender,Age,Qualification,College,City,State,QuestionID,SelectedOption");
+//        writer.println("ID,StudentID,Name,Email,Gender,Age,Qualification,College,City,State,QuestionID,SelectedOption");
+        writer.println("StudentID,Email,Gender,Age,Qualification,QuestionNumber,SelectedOption");
 
         // DATA
         for(AnswerFullDTO d : data){
             writer.println(
-                    d.getId() + "," +
+
                             d.getStudentId() + "," +
-                            d.getName() + "," +
+
                             d.getEmail() + "," +
                             d.getGender() + "," +
                             d.getAge() + "," +
                             d.getQualification() + "," +
-                            d.getCollege() + "," +
-                            d.getCity() + "," +
-                            d.getState() + "," +
-                            d.getQuestionId() + "," +
+                                    d.getQuestionNumber()+" ,"+
+
                             d.getSelectedOption()
             );
         }
@@ -62,6 +61,7 @@ public class StudentController {
         writer.flush();
         writer.close();
     }
+
     // 🔹 Submit
 //    @PostMapping("/submit")
 //    public String submit(@RequestBody SubmitRequest request){

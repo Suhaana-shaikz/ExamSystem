@@ -124,7 +124,7 @@ public class StudentService {
 
 
             ans.setStudentId(savedStudent.getId());
-
+            ans.setQuestionNumber(a.getQuestionNumber());
             ans.setQuestionId(a.getQuestionId());
             ans.setSelectedOption(a.getSelectedOption());
 

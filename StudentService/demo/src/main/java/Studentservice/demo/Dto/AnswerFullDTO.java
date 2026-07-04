@@ -15,6 +15,17 @@ public class AnswerFullDTO {
         return id;
     }
 
+    private int questionNumber;
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
+
+
     public void setId(int id) {
         this.id = id;
     }
