@@ -120,6 +120,11 @@ public class StudentService {
 
         for (AnswerRequest a : request.getAnswers()) {
 
+
+            System.out.println("Question ID      : " + a.getQuestionId());
+            System.out.println("Question Number  : " + a.getQuestionNumber());
+            System.out.println("Selected Option  : " + a.getSelectedOption());
+
             Answer ans = new Answer();
 
 
