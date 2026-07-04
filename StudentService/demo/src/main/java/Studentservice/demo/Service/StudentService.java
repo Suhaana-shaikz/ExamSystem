@@ -121,7 +121,10 @@ public class StudentService {
         for (AnswerRequest a : request.getAnswers()) {
 
             Answer ans = new Answer();
+
+
             ans.setStudentId(savedStudent.getId());
+
             ans.setQuestionId(a.getQuestionId());
             ans.setSelectedOption(a.getSelectedOption());
 
