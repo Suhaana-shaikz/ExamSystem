@@ -63,11 +63,20 @@ public class StudentController {
         writer.close();
     }
     // 🔹 Submit
+//    @PostMapping("/submit")
+//    public String submit(@RequestBody SubmitRequest request){
+//        service.submit(request);
+//        return "Submitted Successfully";
+//    }
+
+
     @PostMapping("/submit")
     public String submit(@RequestBody SubmitRequest request){
-        service.submit(request);
-        return "Submitted Successfully";
+        return service.submit(request);
     }
+
+
+
 
     @GetMapping("/check/{email}")
     public boolean checkUser(@PathVariable String email){

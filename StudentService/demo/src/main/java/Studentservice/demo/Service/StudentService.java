@@ -72,7 +72,38 @@ public class StudentService {
 
 
     // 🔹 Submit Data
-    public void submit(SubmitRequest request){
+//    public void submit(SubmitRequest request){
+//
+//        Student s = new Student();
+//
+//        s.setName(request.getName());
+//        s.setEmail(request.getEmail());
+//        s.setGender(request.getGender());
+//        s.setAge(request.getAge());
+//        s.setQualification(request.getQualification());
+//        s.setCollege(request.getCollege());
+//        s.setCity(request.getCity());
+//        s.setState(request.getState());
+//
+//        Student savedStudent = studentRepo.save(s);
+//
+//        for(AnswerRequest a : request.getAnswers()){
+//
+//            Answer ans = new Answer();
+//            ans.setStudentId(savedStudent.getId());
+//            ans.setQuestionId(a.getQuestionId());
+//            ans.setSelectedOption(a.getSelectedOption());
+//            answerRepo.save(ans);
+//
+//        }
+//    }
+
+
+    public String submit(SubmitRequest request) {
+
+        if (studentRepo.existsByEmail(request.getEmail())) {
+            return "Email already exists";
+        }
 
         Student s = new Student();
 
@@ -87,18 +118,18 @@ public class StudentService {
 
         Student savedStudent = studentRepo.save(s);
 
-        for(AnswerRequest a : request.getAnswers()){
+        for (AnswerRequest a : request.getAnswers()) {
 
             Answer ans = new Answer();
             ans.setStudentId(savedStudent.getId());
             ans.setQuestionId(a.getQuestionId());
             ans.setSelectedOption(a.getSelectedOption());
+
             answerRepo.save(ans);
-
         }
+
+        return "Submitted Successfully";
     }
-
-
 
 
 
