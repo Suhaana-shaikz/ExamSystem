@@ -13,6 +13,15 @@ public class AnswerRequest {
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
+private  int questionNumber;
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
 
     public String getSelectedOption() {
         return selectedOption;

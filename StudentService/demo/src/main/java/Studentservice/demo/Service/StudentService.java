@@ -127,7 +127,7 @@ public class StudentService {
 
             Answer ans = new Answer();
 
-
+            ans.setQuestionNumber(a.getQuestionNumber());
             ans.setStudentId(savedStudent.getId());
             ans.setQuestionId(a.getQuestionId());
             ans.setSelectedOption(a.getSelectedOption());
@@ -173,6 +173,9 @@ public class StudentService {
                 dto.setState(s.getState());
             }
 
+
+
+            dto.setQuestionNumber(a.getQuestionNumber());
             dto.setQuestionId(a.getQuestionId());
             dto.setSelectedOption(a.getSelectedOption());
 

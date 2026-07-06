@@ -13,6 +13,15 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
+
+    private  int questionNumber;
 
 
     public int getId() {
