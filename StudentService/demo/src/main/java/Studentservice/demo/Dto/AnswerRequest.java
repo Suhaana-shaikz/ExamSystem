@@ -5,15 +5,6 @@ package Studentservice.demo.Dto;
 public class AnswerRequest {
     private int questionId;
 
-    private int questionNumber;
-
-    public int getQuestionNumber() {
-        return questionNumber;
-    }
-
-    public void setQuestionNumber(int questionNumber) {
-        this.questionNumber = questionNumber;
-    }
 
     public int getQuestionId() {
         return questionId;

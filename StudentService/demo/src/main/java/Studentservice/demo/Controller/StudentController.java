@@ -52,7 +52,7 @@ public class StudentController {
                             d.getGender() + "," +
                             d.getAge() + "," +
                             d.getQualification() + "," +
-                                    d.getQuestionNumber()+" ,"+
+
 
                             d.getSelectedOption()
             );

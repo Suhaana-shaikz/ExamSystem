@@ -10,9 +10,11 @@ public class SubmitRequest {
 
     private String name;
 
+
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
@@ -81,6 +83,7 @@ public class SubmitRequest {
     public void setAnswers(List<AnswerRequest> answers) {
         this.answers = answers;
     }
+
 
     private String email;
     private String gender;

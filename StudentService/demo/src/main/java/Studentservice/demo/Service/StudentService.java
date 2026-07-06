@@ -122,14 +122,13 @@ public class StudentService {
 
 
             System.out.println("Question ID      : " + a.getQuestionId());
-            System.out.println("Question Number  : " + a.getQuestionNumber());
+
             System.out.println("Selected Option  : " + a.getSelectedOption());
 
             Answer ans = new Answer();
 
 
             ans.setStudentId(savedStudent.getId());
-            ans.setQuestionNumber(a.getQuestionNumber());
             ans.setQuestionId(a.getQuestionId());
             ans.setSelectedOption(a.getSelectedOption());
 
