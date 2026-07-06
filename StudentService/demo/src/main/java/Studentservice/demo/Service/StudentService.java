@@ -127,7 +127,14 @@ public class StudentService {
 
             Answer ans = new Answer();
 
-            ans.setQuestionNumber(a.getQuestionNumber());
+            int questionNumber = webClientBuilder.build()
+                    .get()
+                    .uri("http://QUESTION-SERVICE/questions/number/" + a.getQuestionId())
+                    .retrieve()
+                    .bodyToMono(Integer.class)
+                    .block();
+
+            ans.setQuestionNumber(questionNumber);
             ans.setStudentId(savedStudent.getId());
             ans.setQuestionId(a.getQuestionId());
             ans.setSelectedOption(a.getSelectedOption());
