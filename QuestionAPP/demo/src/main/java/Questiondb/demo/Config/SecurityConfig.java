@@ -18,10 +18,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         // ✅ PUBLIC
-                        .requestMatchers("/questions/random/**").permitAll()
+                        .requestMatchers("/questions/random/**", "/questions/number/**").permitAll()
 
                         // 🔐 ADMIN
                         .requestMatchers("/questions/**").authenticated()
+
 
 
                         // 🔥 IMPORTANT

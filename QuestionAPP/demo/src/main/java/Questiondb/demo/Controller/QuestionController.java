@@ -42,9 +42,20 @@ private QuestionRepo questionRepo;
     // 🔹 Get All
 
 
+    @GetMapping("/hello")
+    public String getname(){
+        return  "suhana";
+    }
 
 
-
+    @GetMapping("/number/{id}")
+    public int getQuestionNumber(@PathVariable int id) {
+        return service.getQuestionNumber(id);
+    }
+    @PostMapping("/byIds")
+    public List<Question> getByIds(@RequestBody List<Integer> ids){
+        return questionRepo.findAllById(ids);
+    }
 
     @GetMapping("/all")
     public List<Question> getAll(){
@@ -82,8 +93,11 @@ private QuestionRepo questionRepo;
         return "Deleted Successfully";
     }
 
-    @PostMapping("/byIds")
-    public List<Question> getByIds(@RequestBody List<Integer> ids){
-        return questionRepo.findAllById(ids);
-    }
+
+//
+//    @GetMapping("/hello")
+//    public String hello() {
+//        return "QUESTION SERVICE NEW VERSION";
+//    }
+
 }

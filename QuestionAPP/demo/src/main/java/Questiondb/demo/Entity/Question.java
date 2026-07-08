@@ -33,8 +33,20 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Transient
+    private int questionNumber;
 
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
+
+    @Column(columnDefinition = "TEXT")
     private String question;
+
     private String option1;
     private String option2;
     private String option3;
