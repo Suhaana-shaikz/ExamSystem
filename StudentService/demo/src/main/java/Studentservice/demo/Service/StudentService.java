@@ -58,6 +58,8 @@ public class StudentService {
 
             return new ArrayList<>();
 
+
+
         } catch (Exception e) {
 
             System.out.println("🔥 ERROR START");
@@ -104,7 +106,8 @@ public class StudentService {
         if (studentRepo.existsByEmail(request.getEmail())) {
             return "Email already exists";
         }
-
+        System.out.println("############################################");
+        System.out.println("NEW STUDENT SERVICE CODE DEPLOYED");
         Student s = new Student();
 
         s.setName(request.getName());
@@ -117,9 +120,11 @@ public class StudentService {
         s.setState(request.getState());
 
         Student savedStudent = studentRepo.save(s);
-
+        System.out.println("############################################");
+        System.out.println("NEW STUDENT SERVICE CODE DEPLOYED");
         for (AnswerRequest a : request.getAnswers()) {
-
+            System.out.println("############################################");
+            System.out.println("NEW STUDENT SERVICE CODE DEPLOYED");
 
             System.out.println("Question ID      : " + a.getQuestionId());
 
@@ -129,7 +134,9 @@ public class StudentService {
 
             int questionNumber = webClientBuilder.build()
                     .get()
-                    .uri("http://QUESTION-SERVICE/questions/number/" + a.getQuestionId())
+//                    .uri("http://QUESTION-SERVICE/questions/number/" + a.getQuestionId())
+//                    .uri("https://examsystem-4.onrender.com/questions/number/" + a.getQuestionId())
+                    .uri("https://examsystem-4.onrender.com/questions/number/" + a.getQuestionId())
                     .retrieve()
                     .bodyToMono(Integer.class)
                     .block();
@@ -142,6 +149,8 @@ public class StudentService {
             answerRepo.save(ans);
         }
 
+        System.out.println("############################################");
+        System.out.println("NEW STUDENT SERVICE CODE DEPLOYED");
         return "Submitted Successfully";
     }
 
