@@ -51,6 +51,7 @@ public class QuestionService {
         existing.setOption2(q.getOption2());
         existing.setOption3(q.getOption3());
         existing.setOption4(q.getOption4());
+        existing.setAiScore(q.getAiScore());
 
         return repo.save(existing);
     }
