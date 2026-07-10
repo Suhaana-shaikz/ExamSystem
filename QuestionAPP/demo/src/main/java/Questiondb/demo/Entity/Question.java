@@ -52,6 +52,16 @@ public class Question {
     private String option3;
     private String option4;
 
+    public String getAiScore() {
+        return aiScore;
+    }
+
+    public void setAiScore(String aiScore) {
+        this.aiScore = aiScore;
+    }
+
+    private String aiScore;
+
 
     public int getId() {
         return id;
