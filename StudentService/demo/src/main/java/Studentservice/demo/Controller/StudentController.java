@@ -32,7 +32,7 @@ public class StudentController {
     public void downloadCSV(HttpServletResponse response) throws IOException {
 
         response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=students_data.csv");
+        response.setHeader("Content-Disposition", "attachment; filename=Response_Data_file");
 
         List<AnswerFullDTO> data = service.getDashboard();
 
@@ -40,13 +40,13 @@ public class StudentController {
 
         // HEADER
 //        writer.println("ID,StudentID,Name,Email,Gender,Age,Qualification,College,City,State,QuestionID,SelectedOption");
-        writer.println("StudentID,Email,Gender,Age,Qualification,QuestionNumber,SelectedOption");
+        writer.println("StudentName,Email,Gender,Age,Qualification,QuestionNumber,SelectedOption");
 
         // DATA
         for(AnswerFullDTO d : data){
             writer.println(
 
-                            d.getStudentId() + "," +
+                            d.getName()+","+
 
                             d.getEmail() + "," +
                             d.getGender() + "," +
