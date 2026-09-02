@@ -5,22 +5,12 @@ package Studentservice.demo.Dto;
 public class AnswerRequest {
     private int questionId;
 
-
     public int getQuestionId() {
         return questionId;
     }
 
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
-    }
-private  int questionNumber;
-
-    public int getQuestionNumber() {
-        return questionNumber;
-    }
-
-    public void setQuestionNumber(int questionNumber) {
-        this.questionNumber = questionNumber;
     }
 
     public String getSelectedOption() {
@@ -30,26 +20,6 @@ private  int questionNumber;
     public void setSelectedOption(String selectedOption) {
         this.selectedOption = selectedOption;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private String selectedOption;
 }

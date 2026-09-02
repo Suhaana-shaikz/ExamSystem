@@ -15,5 +15,4 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
     boolean existsByEmail(String email);
 
 
-
 }

@@ -1,5 +1,11 @@
 package Studentservice.demo.Controller;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 
 import Studentservice.demo.Dto.AnswerFullDTO;
@@ -28,57 +34,116 @@ public class StudentController {
 
     @Autowired
     private StudentService service;
-    @GetMapping("/download")
-    public void downloadCSV(HttpServletResponse response) throws IOException {
 
-        response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=Response_Data_file");
+
+    @GetMapping("/download")
+    public void downloadExcel(HttpServletResponse response) throws IOException {
+
+        response.setContentType(
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        );
+
+        response.setHeader(
+                "Content-Disposition",
+                "attachment; filename=students_data.xlsx"
+        );
 
         List<AnswerFullDTO> data = service.getDashboard();
 
-        PrintWriter writer = response.getWriter();
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Students");
 
         // HEADER
-//        writer.println("ID,StudentID,Name,Email,Gender,Age,Qualification,College,City,State,QuestionID,SelectedOption");
-        writer.println("StudentName,Email,Gender,Age,Qualification,QuestionNumber,SelectedOption");
+        Row header = sheet.createRow(0);
 
-        // DATA
-        for(AnswerFullDTO d : data){
-            writer.println(
+        String[] headers = {
+                "Name",
+                "Email",
+                "Gender",
+                "Age",
+                "Qualification",
+                "College",
+                "City",
+                "State",
+                "QuestionID",
+                "SelectedOption"
+        };
 
-                            d.getName()+","+
-
-                            d.getEmail() + "," +
-                            d.getGender() + "," +
-                            d.getAge() + "," +
-                            d.getQualification() + "," +
-
-                                    d.getQuestionNumber() + "," +
-
-
-                            d.getSelectedOption()
-            );
+        for (int i = 0; i < headers.length; i++) {
+            header.createCell(i).setCellValue(headers[i]);
         }
 
-        writer.flush();
-        writer.close();
+        // DATA
+        int rowNum = 1;
+
+        for (AnswerFullDTO d : data) {
+
+            Row row = sheet.createRow(rowNum++);
+
+            row.createCell(0).setCellValue(d.getName());
+            row.createCell(1).setCellValue(d.getEmail());
+            row.createCell(2).setCellValue(d.getGender());
+            row.createCell(3).setCellValue(d.getAge());
+            row.createCell(4).setCellValue(d.getQualification());
+            row.createCell(5).setCellValue(d.getCollege());
+            row.createCell(6).setCellValue(d.getCity());
+            row.createCell(7).setCellValue(d.getState());
+            row.createCell(8).setCellValue(d.getQuestionId());
+            row.createCell(9).setCellValue(d.getSelectedOption());
+        }
+
+        // Adjust column widths
+        for (int i = 0; i < headers.length; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
 
-    // 🔹 Submit
-//    @PostMapping("/submit")
-//    public String submit(@RequestBody SubmitRequest request){
-//        service.submit(request);
-//        return "Submitted Successfully";
+
+
+
+//    @GetMapping("/download")
+//    public void downloadCSV(HttpServletResponse response) throws IOException {
+//
+//        response.setContentType("text/csv");
+//        response.setHeader("Content-Disposition", "attachment; filename=students_data.csv");
+//
+//        List<AnswerFullDTO> data = service.getDashboard();
+//
+//        PrintWriter writer = response.getWriter();
+//
+//        // HEADER
+//        writer.println("Name,Email,Gender,Age,Qualification,College,City,State,QuestionID,SelectedOption");
+//
+//        // DATA
+//        for(AnswerFullDTO d : data){
+//            writer.println(
+//
+//
+//                            d.getName() + "," +
+//                            d.getEmail() + "," +
+//                            d.getGender() + "," +
+//                            d.getAge() + "," +
+//                            d.getQualification() + "," +
+//                            d.getCollege() + "," +
+//                            d.getCity() + "," +
+//                            d.getState() + "," +
+//                            d.getQuestionId() + "," +
+//                            d.getSelectedOption()
+//            );
+//        }
+//
+//        writer.flush();
+//        writer.close();
 //    }
-
-
+    // 🔹 Submit
     @PostMapping("/submit")
     public String submit(@RequestBody SubmitRequest request){
-        return service.submit(request);
+        service.submit(request);
+        return "Submitted Successfully";
     }
-
-
-
 
     @GetMapping("/check/{email}")
     public boolean checkUser(@PathVariable String email){
@@ -91,10 +156,7 @@ public class StudentController {
         return service.getDashboard();
     }
 
-    @GetMapping("/test")
-    public String test(){
-        return "Working";
-    }
+
 
     @GetMapping("/questions")
     public List<Question> getQuestions(){
